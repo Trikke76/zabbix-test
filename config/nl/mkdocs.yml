@@ -1,0 +1,31 @@
+site_name: 'Handleiding'
+docs_dir: '../../docs/nl'                           # Where to find the English markdown files
+site_dir: '../../generated/nl'                      # Where to put the English HTML files
+
+theme:
+    name: material
+    logo: assets/images/logo.svg                    # The logo is shared by all languages
+    favicon: assets/images/favicon.ico              # The favicon is shared by all languages
+    language: nl                                    # The build's language
+
+
+extra:
+  alternate:                                        # Language Selection
+
+     # Switch to English
+    - name: English
+      link: /en/
+      lang: en
+
+    # Switch to Dutch
+    - name: Nederlands
+      link: /nl/
+      lang: nl
+
+
+plugins:
+  - search:                                         
+      lang: nl                                      # Set language for search
+
+nav:
+- Welkom: index.md
