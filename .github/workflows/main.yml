@@ -13,4 +13,5 @@ jobs:
         with:
           python-version: 3.x
       - run: pip install mkdocs-material mkdocs-with-pdf weasyprint==54.3
-      - run: mkdocs gh-deploy --force
+      - run: mkdocs gh-deploy --force -f config/en/mkdocs.yml
+      - run: mkdocs gh-deploy --force -f config/nl/mkdocs.yml
