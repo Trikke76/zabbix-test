@@ -12,6 +12,7 @@ docs_dir: docs
 # Navigation
 nav:
   - Welcome: 'index.md'
+  - Welkom: 'index.nl.md'
   - 'Getting started':
     - installation/Requirements.md
     - installation/installing-zabbixdb.md
@@ -99,6 +100,24 @@ theme:
 # Plugins
 plugins:
   - search
+  - i18n:
+      languages:
+        nl: "Dutch"
+        en: "English"
+      default_language: 'en'
+      no_translation:
+        nl: "Deze pagina is nog niet vertaald in het Nederlands"
+        en: "This page isn't translated to English."
+      translate_nav:
+        nl:
+          section title: "Sectie"
+          subsection: "Sub-sectie"
+          page title: "Pagina met titel vertaald"
+        en:
+          section title: "Section"
+          subsection: "Subsection"
+          page title: "Page with title translated"
+
   - with-pdf: #add only if you like to build a pdf file
       author: Patrik Uytterhoeven
       copyright: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
