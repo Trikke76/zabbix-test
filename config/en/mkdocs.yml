@@ -29,3 +29,5 @@ plugins:
 
 nav:
 - Welcome: index.md
+- 'Getting started':
+    - installation/Requirements.md
