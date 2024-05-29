@@ -29,3 +29,5 @@ plugins:
 
 nav:
 - Welkom: index.md
+- 'Starten met Zabbix':
+    - installation/Requirements.md
