@@ -1,7 +1,9 @@
 # Project information
-site_name: Zabbix Book
+site_name: Zabbix 7 Monitoring
 site_url: https://trikke76.github.io/Zabbix-Book
-site_author: Patrik Uytterhoeven
+site_author: Patrik Uytterhoeven and all github contributors
+site_description: An open-source Zabbix book
+copyright: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
 
 # Repository
 repo_name: trikke76
@@ -12,7 +14,6 @@ docs_dir: docs
 # Navigation
 nav:
   - Welcome: 'index.md'
-  - Welkom: 'index.nl.md'
   - 'Getting started':
     - installation/Requirements.md
     - installation/installing-zabbixdb.md
@@ -60,6 +61,7 @@ nav:
     - proxies/loadbalancing-proxies.md
   - 'Securing Zabbix':
     - security/securing-zabbix.md
+    - security/securing-zabbix-selinux.md
   - 'Maintaining Zabbix':
     - maintenance/maintaining-zabbix.md
   - 'Monitoring Windows':
@@ -72,6 +74,7 @@ nav:
 theme:
    language: en
    name: material
+   custom_dir: docs/overrides
    font:
      text: Roboto
      code: Nunito
@@ -80,7 +83,7 @@ theme:
    features:
      - header.autohide
      - navigation.sections
-     - navigation.instant
+#     - navigation.instant can't be used with i18n
      - navigation.expand
    palette:
      - scheme: default
@@ -96,72 +99,77 @@ theme:
          icon: material/toggle-switch
          name: Switch to light mode
 
-
 # Plugins
 plugins:
   - search
   - i18n:
+      reconfigure_material: true
+      fallback_to_default: true
+      docs_structure: suffix
       languages:
-        nl: "Dutch"
-        en: "English"
-      default_language: 'en'
-      no_translation:
-        nl: "Deze pagina is nog niet vertaald in het Nederlands"
-        en: "This page isn't translated to English."
-      translate_nav:
-        nl:
-          section title: "Sectie"
-          subsection: "Sub-sectie"
-          page title: "Pagina met titel vertaald"
-        en:
-          section title: "Section"
-          subsection: "Subsection"
-          page title: "Page with title translated"
-        fr:
-          section title: "Section"
-          subsection: "Subsection"
-          page title: "Pas encore traduis"
-
-  - with-pdf: #add only if you like to build a pdf file
-      author: Patrik Uytterhoeven
-      copyright: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
-      #
-      #cover: false
-      #back_cover: true
-      cover_title: Zabbix 7 Monitoring
-      cover_subtitle: Enterprise Monitoring With Zabbix
-      #custom_template_path: TEMPLATES PATH
-      #
-      #toc_title: TOC TITLE TEXT
-      #heading_shift: false
-      #toc_level: 3
-      #ordered_chapter_level: 2
-      #excludes_children:
-      #    - 'release-notes/:upgrading'
-      #    - 'release-notes/:changelog'
-      #
-      #exclude_pages:
-      #    - 'bugs/'
-      #    - 'appendix/contribute/'
-      #convert_iframe:
-      #    - src: IFRAME SRC
-      #      img: POSTER IMAGE URL
-      #      text: ALTERNATE TEXT
-      #    - src: ...
-      #two_columns_level: 3
-      #
-      #render_js: true
-      #headless_chrome_path:
-      #
-      output_path: ../zabbix-7-book.pdf
-      #enabled_if_env: ENABLE_PDF_EXPORT
-      #
-      #debug_html: true
-      #show_anchors: true
-      #verbose: true
-# alternative pdf solution https://github.com/orzih/mkdocs-with-pdf
-#  - page-to-pdf
-
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: fr
+          name: Français
+          build: true
+        - locale: de
+          name: German
+          build: true
+        - locale: it
+          name: Italian
+          build: true
+        - locale: nl
+          name: Nederlands
+          build: true
+          nav_translations:
+            Welcome: Welkom
+            Getting started: Aan de slag
+            The basics: De basis
+            Problem detection: Probleem detectie
+        - locale: pt
+          name: Portuguese
+          build: true
+        - locale: es
+          name: Spanish
+          build: true
+        - locale: th
+          name: ภาษาไทย
+          build: true
+          nav_translations:
+            Welcome: ยินดีต้อนรับ
+            Getting started: การเริ่มต้น
+            The basics: พื้นฐาน
+            Problem detection: การตรวจจับปัญหา
+        - locale: zh
+          name: 中国人
+          build: true
+          nav_translations:
+            Welcome: 欢迎
+            Getting started: 入门
+            The basics: 基础
+            Problem detection: 问题检测
+ 
+  - print-site:
+      add_to_navigation: false
+      print_page_title: 'Print Book'
+      add_print_site_banner: true
+      print_site_banner_template: "docs/assets/templates/custom_banner.tpl"
+      # Table of contents
+      add_table_of_contents: true
+      toc_title: 'Table of Contents'
+      toc_depth: 6
+      # Content-related
+      add_full_urls: false
+      enumerate_headings: true
+      enumerate_figures: true
+      add_cover_page: true
+      cover_page_template: "docs/assets/templates/custom_cover_page.tpl"
+      path_to_pdf: ""
+      include_css: true
+      enabled: true
+      exclude:
 
 # Extensions
 markdown_extensions:
@@ -178,9 +186,6 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.caret
-#  - pymdownx.emoji:
-#      emoji_index: !!python/name:material.extensions.emoji.twemoji
-#      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight
   - pymdownx.inlinehilite
   - pymdownx.progressbar
