@@ -117,6 +117,10 @@ plugins:
           section title: "Section"
           subsection: "Subsection"
           page title: "Page with title translated"
+        fr:
+          section title: "Section"
+          subsection: "Subsection"
+          page title: "Pas encore traduis"
 
   - with-pdf: #add only if you like to build a pdf file
       author: Patrik Uytterhoeven
